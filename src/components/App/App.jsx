@@ -1,17 +1,29 @@
-import "./App.css";
-import { AppBar } from "../AppBar/AppBar";
 import { Layout } from "../Layout/Layout";
-import { TasksList } from "../TasksList/TasksList";
-import { TaskForm } from "../TaskForm/TaskForm";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchTasks } from "../../redux/Tasks/operations";
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "../../pages/HomePage";
+import { RegisterPage } from "../../pages/RegisterPage";
+import { LoginPage } from "../../pages/LoginPage";
 
-function App() {
+export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
   return (
-    <Layout>
-      <AppBar />
-      <TaskForm />
-      <TasksList />
-    </Layout>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/tasks" element={<TaskPage />}/> */}
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;

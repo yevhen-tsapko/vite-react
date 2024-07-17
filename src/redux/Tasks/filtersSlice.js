@@ -15,9 +15,3 @@ const filtersSlice = createSlice({
 });
 export const filtersReducer = filtersSlice.reducer;
 export const { setStatusFilter } = filtersSlice.actions;
-
-// export const filtersReducer = createReducer(filtersInitialState, (builder) => {
-//   builder.addCase(setStatusFilter, (state, action) => {
-//     state.status = action.payload;
-//   });
-// });

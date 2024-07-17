@@ -4,7 +4,11 @@ import { StatusFilter } from "../StatusFilter/StatusFilter";
 export const AppBar = () => {
   return (
     <header className={css.wrapper}>
-      <section className={css.section}>
+     
+    </header>
+  );
+};
+ <section className={css.section}>
         <h2 className={css.title}>Tasks</h2>
         <TaskCounter />
       </section>
@@ -12,6 +16,3 @@ export const AppBar = () => {
         <h2 className={css.title}>Filter by status</h2>
         <StatusFilter />
       </section>
-    </header>
-  );
-};

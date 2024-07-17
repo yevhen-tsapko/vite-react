@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
-import { removeTask, toggleCompleted } from "../../redux/tasksSlice";
+import { deleteTask, toggleTask } from "../../redux/operations";
 import css from "./Task.module.css";
 import { MdClose } from "react-icons/md";
 
@@ -10,7 +10,7 @@ export const Task = ({ task }) => {
     <div className={css.wrapper}>
       <input
         onChange={() => {
-          dispatch(toggleCompleted(task.id));
+          dispatch(toggleTask(task));
         }}
         type="checkbox"
         checked={task.completed}
@@ -21,7 +21,7 @@ export const Task = ({ task }) => {
         type="button"
         className="css.btn"
         onClick={() => {
-          dispatch(removeTask(task.id));
+          dispatch(deleteTask(task.id));
         }}
       >
         <MdClose size={24} />
