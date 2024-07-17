@@ -7,8 +7,13 @@ export const TaskForm = () => {
   const handlerSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    dispatch(addTask(form.elements.text.value));
-    form.reset();
+    const text = form.elements.text.value;
+    if (text !== "") {
+      dispatch(addTask(text));
+      form.reset();
+      return;
+    }
+    alert("Task cannot be empty. Enter some text!");
   };
   return (
     <form onSubmit={handlerSubmit} className={css.form}>

@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux";
 import { Task } from "../Task/Task";
 import css from "./TasksList.module.css";
-import { selectVisibleTasks } from "../../redux/selectors";
+import { selectAllTasks } from "../../redux/Tasks/selectors";
 
 export const TasksList = () => {
-  const tasks = useSelector(selectVisibleTasks);
+  const tasks = useSelector(selectAllTasks);
 
   return (
     <ul>
       {tasks.map((task) => (
         <li className={css.listItem} key={task.id}>
-          <Task task={task} />
+          <Task task={task} id={task.id} />
         </li>
       ))}
     </ul>

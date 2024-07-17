@@ -6,6 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage";
 import { RegisterPage } from "../../pages/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage";
+import { PrivateRoute } from "../PrivateRoute";
+import { RestrictedRoute } from "../RestrictedRoute";
+import { TasksPage } from "../../pages/TasksPage";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -18,9 +21,24 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/tasks" element={<TaskPage />}/> */}
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/tasks" component={<RegisterPage />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/tasks" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/tasks"
+          element={
+            <PrivateRoute redirectTo="/login" component={<TasksPage />} />
+          }
+        />
       </Route>
     </Routes>
   );
